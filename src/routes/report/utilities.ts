@@ -23,7 +23,7 @@ export const constructDiscordEmbed = ({
           icon_url:
             "https://upload.wikimedia.org/wikipedia/commons/9/90/Rust_Logo.png",
         },
-        description: `A new report has been submitted on ${host}`,
+        description: `A new report has been submitted on **${host}**.`,
         color: 10038562,
         fields: [
           {

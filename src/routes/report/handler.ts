@@ -1,7 +1,8 @@
 import { IRequest, Router } from "itty-router";
 import { BAD_GATEWAY, BAD_REQUEST, CREATED } from "http-status";
+import { isValid } from "ipaddr.js";
 import { Env } from "../..";
-import { toJSON } from "../../utils";
+import { toJSON } from "../../utilities";
 import { ResponseStatus } from "../../constants";
 import { constructDiscordEmbed } from "./utilities";
 import { ReportTypePhrases, ReportTypeValues } from "./constants";
@@ -18,6 +19,7 @@ type ReportResponse =
 
 const hosts: Record<string, string> = {
   "157.90.1.44": "rust.level9.gg",
+  "0000:0000:0000:0000:0000:ffff:9d5a:012c": "rust.level9.gg",
 };
 
 const post = async (
@@ -43,7 +45,15 @@ const post = async (
 
     const clientIP =
       request.headers.get("x-real-ip") ??
-      request.headers.get("x-forwarded-for");
+      request.headers.get("x-forwarded-for")?.split(",")?.[0];
+
+    if (!isValid(clientIP) || !hosts[clientIP]) {
+      return toJSON<ReportResponse>({
+        status: ResponseStatus.Error,
+        reason: `Unexpected sender IP. Received "${clientIP}".`,
+      });
+    }
+
     const report = Object.fromEntries(await request.formData()) as Report;
     const reportData = JSON.parse(report.data);
 
@@ -55,13 +65,6 @@ const post = async (
         },
         { status: BAD_REQUEST }
       );
-    }
-
-    if (!hosts[clientIP]) {
-      return toJSON<ReportResponse>({
-        status: ResponseStatus.Error,
-        reason: `Unexpected sender IP. Received "${clientIP}".`,
-      });
     }
 
     const discordEmbed = constructDiscordEmbed({

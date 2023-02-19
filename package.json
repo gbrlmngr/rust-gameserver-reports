@@ -30,6 +30,7 @@
   "dependencies": {
     "discord-api-types": "^0.37.35",
     "http-status": "^1.6.2",
+    "ipaddr.js": "^2.0.1",
     "itty-router": "^3.0.11"
   },
   "config": {
