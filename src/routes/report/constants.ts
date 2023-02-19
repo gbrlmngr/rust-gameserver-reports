@@ -5,13 +5,13 @@ export enum ReportTypeValues {
   Abuse,
   Idea,
   Offensive,
-};
+}
 
-export const ReportTypePhrases: Record<ReportTypeValues, string> = ({
-  [ReportTypeValues.Encouragement]: 'Encouragement',
-  [ReportTypeValues.Bug]: 'Bug',
-  [ReportTypeValues.Cheat]: 'Cheat',
-  [ReportTypeValues.Abuse]: 'Abuse',
-  [ReportTypeValues.Idea]: 'Idea',
-  [ReportTypeValues.Offensive]: 'Offensive',
-});
+export const ReportTypePhrases: Record<ReportTypeValues, string> = {
+  [ReportTypeValues.Encouragement]: "Encouragement",
+  [ReportTypeValues.Bug]: "Bug",
+  [ReportTypeValues.Cheat]: "Cheat",
+  [ReportTypeValues.Abuse]: "Abuse",
+  [ReportTypeValues.Idea]: "Idea",
+  [ReportTypeValues.Offensive]: "Offensive",
+};

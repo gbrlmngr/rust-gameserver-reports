@@ -4,13 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest src/",
+    "lint": "eslint src/",
+    "prettier": "prettier --write src/",
+    "prepare": "husky install",
+    "commit": "cz"
   },
   "keywords": [],
   "author": "Gabriel Mangiurea",
   "license": "ISC",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230215.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.34.0",
+    "eslint-config-prettier": "^8.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
+    "prettier": "2.8.4",
     "typescript": "^4.9.5",
     "vitest": "^0.28.5",
     "wrangler": "^2.10.0"
@@ -19,5 +31,22 @@
     "discord-api-types": "^0.37.35",
     "http-status": "^1.6.2",
     "itty-router": "^3.0.11"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.json": "prettier --write"
   }
 }
