@@ -48,10 +48,13 @@ const post = async (
       request.headers.get("x-forwarded-for")?.split(",")?.[0];
 
     if (!isValid(clientIP) || !hosts[clientIP]) {
-      return toJSON<ReportResponse>({
-        status: ResponseStatus.Error,
-        reason: `Unexpected sender IP. Received "${clientIP}".`,
-      });
+      return toJSON<ReportResponse>(
+        {
+          status: ResponseStatus.Error,
+          reason: `Unexpected sender IP. Received "${clientIP}".`,
+        },
+        { status: BAD_REQUEST }
+      );
     }
 
     const report = Object.fromEntries(await request.formData()) as Report;
