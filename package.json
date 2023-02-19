@@ -1,0 +1,23 @@
+{
+  "name": "rust-gameserver-reports",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Gabriel Mangiurea",
+  "license": "ISC",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230215.0",
+    "typescript": "^4.9.5",
+    "vitest": "^0.28.5",
+    "wrangler": "^2.10.0"
+  },
+  "dependencies": {
+    "discord-api-types": "^0.37.35",
+    "http-status": "^1.6.2",
+    "itty-router": "^3.0.11"
+  }
+}

@@ -1,0 +1,12 @@
+name = "rust-gameserver-reports-dev"
+main = "src/index.ts"
+compatibility_date = "2023-02-19"
+
+[env.development]
+REPORTS_SECRET=""
+REPORTS_DISCORD_WEBHOOK_URL=""
+
+[env.production]
+name = "rust-gameserver-reports-prod"
+REPORTS_SECRET=""
+REPORTS_DISCORD_WEBHOOK_URL=""
