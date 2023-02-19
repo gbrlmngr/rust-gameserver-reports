@@ -79,7 +79,7 @@ const post = async (
       body: JSON.stringify(discordEmbed),
     });
 
-    return toJSON<any>(
+    return toJSON<ReportResponse>(
       {
         status: ResponseStatus.Success,
         message: `Report sent successfully at ${new Date().toISOString()}.`,
