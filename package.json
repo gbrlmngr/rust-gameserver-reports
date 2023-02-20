@@ -40,11 +40,6 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && npx cz --hook || true"
-    }
-  },
   "lint-staged": {
     "*.{js,ts}": [
       "eslint --fix",
