@@ -93,10 +93,13 @@ const post = async (
       { status: CREATED }
     );
   } catch (error) {
-    return toJSON<ReportResponse>({
-      status: ResponseStatus.Error,
-      reason: (error as Error).message,
-    });
+    return toJSON<ReportResponse>(
+      {
+        status: ResponseStatus.Error,
+        reason: (error as Error).message,
+      },
+      { status: BAD_GATEWAY }
+    );
   }
 };
 
